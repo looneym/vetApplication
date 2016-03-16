@@ -13,23 +13,22 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Customer;
+import model.Pet;
 import model.Procedure;
 
 public class ViewProceduresScene {
 
 	public static void showScene(Scene customersPage, Scene viewPetsScene, Stage stage, Customer selectedCustomer) {
 		
-
+        // Base UI elements
 		Button editProcedureButton = new Button("Edit Procedure");
 		Button addProcedureButton = new Button("Add Perocedure");
 		Button deleteProcedureButton = new Button("Delete Procedure");
 		Button returnHomeButton = new Button("Return to main page");
-		
-		
 		final Label labelProcList = new Label("Procedures List");
 		
 		
-		// Set up TableView to read from list of pets
+		// Set up TableView to read from list of procedures
 		TableView<Procedure> proceduresTable = new TableView<Procedure>();
 		proceduresTable.setItems(ManageCustomers.getCustomerProcedures(selectedCustomer));
 		
@@ -57,13 +56,32 @@ public class ViewProceduresScene {
 		vboxRight.setPadding(new Insets(50, 10, 0, 10));	
 		vboxRight.getChildren().addAll(editProcedureButton, addProcedureButton, deleteProcedureButton, returnHomeButton);
 		
+		// Add elements to BorderPane
 		BorderPane viewProceduresBorderPane = new BorderPane();
 		viewProceduresBorderPane.setCenter(vboxPets);
 		viewProceduresBorderPane.setRight(vboxRight);
 		
+		// Use BorderPane to create Scene and display
 		Scene viewProceduresScene = new Scene(viewProceduresBorderPane);		
 		stage.setScene(viewProceduresScene);
 		stage.show();
+		
+		// Set event handlers 
+		returnHomeButton.setOnAction(e -> {
+			stage.setScene(customersPage);
+		});
+		editProcedureButton.setOnAction(e -> {
+			Procedure procToEdit = (Procedure) proceduresTable.getSelectionModel().getSelectedItem();
+			EditProcedureScene.showScene(customersPage, viewPetsScene, viewProceduresScene, stage, selectedCustomer, procToEdit);
+				
+	});
+		addProcedureButton.setOnAction(e -> AddProcedureScene.showScene(stage, selectedCustomer, customersPage, viewProceduresScene));
+		deleteProcedureButton.setOnAction( e -> {
+			Procedure proc = (Procedure ) proceduresTable.getSelectionModel().getSelectedItem();
+			ManageCustomers.removeProcedure(proc);		
+			
+		});
+		
 		
 		
 		

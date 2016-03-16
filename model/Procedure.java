@@ -13,7 +13,7 @@ public class Procedure {
 		name = name2;
 		price = price2;
 		date = date2;
-		owner2 = owner;
+		owner = owner2;
 		ManageCustomers.addProcedure(this);
 		// TODO Auto-generated constructor stub
 	}

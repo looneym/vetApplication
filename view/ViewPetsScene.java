@@ -50,25 +50,6 @@ public class ViewPetsScene {
 		petsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 		// Add TableView to a VBox
 		final VBox vboxPets = new VBox();

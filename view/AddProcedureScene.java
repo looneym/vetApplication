@@ -14,7 +14,7 @@ import model.Procedure;
 
 public class AddProcedureScene {
 
-	public static Object addProcedure(Stage stage, Customer owner, Scene customersPage, Scene viewProceduresScene) {
+	public static Object showScene(Stage stage, Customer owner, Scene customersPage, Scene viewProceduresScene) {
 		
 		
 		// Create TextFields and a button to allow the user to update the details
